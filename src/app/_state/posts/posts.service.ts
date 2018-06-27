@@ -7,7 +7,7 @@ import { Post } from './posts.model';
 } )
 export class PostsService {
 
-  private readonly apiUrl = 'http://reduxblog.herokuapp.com/api/posts';
+  private readonly apiUrl = '//reduxblog.herokuapp.com/api/posts';
   private apiKey = '123123';
   private params = {
     params : { key : this.apiKey }

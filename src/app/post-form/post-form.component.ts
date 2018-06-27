@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { finalize } from 'rxjs/internal/operators';
 import { AddPost } from '../_state/posts/posts.actions';
@@ -14,7 +15,7 @@ export class PostFormComponent implements OnInit {
 
   saving = false;
 
-  constructor( private store : Store ) {
+  constructor( private store : Store, private router : Router ) {
   }
 
   ngOnInit() {
@@ -28,6 +29,7 @@ export class PostFormComponent implements OnInit {
           this.saving = false;
         } )
       ).subscribe();
+      this.router.navigate( [ 'posts' ] );
     }
   }
 
