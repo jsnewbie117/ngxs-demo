@@ -1,6 +1,6 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/internal/operators';
-import { AddPost, DeletePost, GetAllPosts, GetPost } from './posts.actions';
+import { AddPost, DeletePost, GetAllPosts } from './posts.actions';
 import { Post } from './posts.model';
 import { PostsService } from './posts.service';
 

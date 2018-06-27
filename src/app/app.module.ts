@@ -4,7 +4,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsModule } from '@ngxs/store';
-import { CoreModule } from './_core/core.module';
 import { SharedModule } from './_shared/shared.module';
 import { PostsState } from './_state/posts/posts.state';
 
