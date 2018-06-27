@@ -1,0 +1,21 @@
+<mat-toolbar class="toolbar" color="primary">
+    <a routerLink="../" mat-icon-button>
+        <mat-icon>arrow_back</mat-icon>
+    </a>
+    <span>Add new Post</span>
+</mat-toolbar>
+<form #addPostForm="ngForm" (submit)="addPost(addPostForm)" novalidate>
+    <mat-form-field>
+        <input matInput placeholder="Title" name="title" ngModel required>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Categories" name="categories" ngModel required>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Content" name="content" ngModel required>
+    </mat-form-field>
+    <br/>
+    <br/>
+    <button type="submit" mat-raised-button color="primary" [disabled]="saving">Submit</button>
+    <a routerLink="../" mat-button>Cancel</a>
+</form>

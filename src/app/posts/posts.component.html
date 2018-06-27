@@ -1,3 +1,29 @@
-<p>
-    posts works!
-</p>
+<div fxLayout="column" style="height: 100%;">
+    <mat-toolbar class="toolbar mat-elevation-z3" color="primary" fxFlex="none">
+        <span>All Posts</span>
+        <a mat-mini-fab class="add-post-btn" routerLink="new"
+           matTooltip="Add new Post" matTooltipPosition="left">
+            <mat-icon>add</mat-icon>
+        </a>
+    </mat-toolbar>
+    <div fxFlex style="overflow: auto;">
+        <mat-list>
+            <mat-list-item *ngFor="let post of posts$ | async" class="post-list-item">
+                <div fxLayout="row" fxFlexFill fxLayoutAlign="center center">
+                    <div fxFlex="grow">
+                        <h3><a [routerLink]="post.id">{{post.title}}</a></h3>
+                        <p>
+                            <span> {{post.content}} </span>
+                        </p>
+                    </div>
+                    <div fxFlex="none">
+                        <button mat-icon-button (click)="deletePost(post.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </div>
+
+</div>

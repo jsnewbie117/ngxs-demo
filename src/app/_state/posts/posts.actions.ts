@@ -13,7 +13,6 @@ export class AddPost {
   }
 }
 
-
 export class DeletePost {
   // noinspection JSUnusedGlobalSymbols
   static type = '[posts] deletePost';

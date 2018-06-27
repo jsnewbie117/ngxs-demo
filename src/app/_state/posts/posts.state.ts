@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/internal/operators';
-import { AddPost, DeletePost, GetAllPosts } from './posts.actions';
+import { AddPost, DeletePost, GetAllPosts, GetPost } from './posts.actions';
 import { Post } from './posts.model';
+import { PostsService } from './posts.service';
 
 @State<Post[]>( {
   name : 'posts',
@@ -10,10 +10,7 @@ import { Post } from './posts.model';
 } )
 export class PostsState {
 
-  private readonly apiUrl = 'http://reduxblog.herokuapp.com/api/posts';
-  private apiKey = 'test';
-
-  constructor( private http : HttpClient ) {
+  constructor( private postsService : PostsService ) {
   }
 
   @Selector()
@@ -23,27 +20,28 @@ export class PostsState {
 
   @Action( GetAllPosts )
   getAllPosts( { getState, setState } : StateContext<Post[]> ) {
-    return getState() || this.http.get( this.apiUrl, { params : { key : this.apiKey } } )
-      .pipe( tap( ( posts : Post[] ) => {
+    return getState() || this.postsService.getPosts().pipe(
+      tap( ( posts : Post[] ) => {
         setState( posts );
       } ) );
   }
 
   @Action( AddPost )
   addPost( { getState, setState } : StateContext<Post[]>, { post } : AddPost ) {
-    return this.http.post( this.apiUrl, post, { params : { apiKey : this.apiKey } } ).pipe(
+    return this.postsService.addPost( post ).pipe(
       tap( ( result : Post ) => {
-        setState( [ ...getState(), result ] );
+        setState( [ ...(getState() || []), result ] );
       } )
     );
   }
 
   @Action( DeletePost )
   deletePost( { getState, setState } : StateContext<Post[]>, { id } : DeletePost ) {
-    return this.http.delete( `${this.apiUrl}/${id}` ).pipe(
+    return this.postsService.deletePost( id ).pipe(
       tap( () => {
-        setState( getState().filter( post => post.id !== id ) );
-      } )
+          setState( getState().filter( post => post.id !== id ) );
+        }
+      )
     );
   }
 

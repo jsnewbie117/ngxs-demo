@@ -1,0 +1,13 @@
+.add-post-btn {
+  position: absolute;
+  bottom: -30px;
+  right: 20px;
+  margin-bottom: 10px;
+}
+
+.post-list-item.mat-list-item {
+  height: 72px;
+  & * {
+    margin: 0;
+  }
+}

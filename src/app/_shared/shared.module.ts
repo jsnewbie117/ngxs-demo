@@ -1,8 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatExportsModule } from './mat-exports/mat-exports.module';
 
 const modules = [
-  CommonModule
+  CommonModule,
+  FormsModule,
+  MatExportsModule
 ];
 
 @NgModule( {
