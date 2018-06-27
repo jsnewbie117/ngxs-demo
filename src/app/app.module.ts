@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxsModule } from '@ngxs/store';
 import { CoreModule } from './_core/core.module';
 import { SharedModule } from './_shared/shared.module';
+import { PostsState } from './_state/posts/posts.state';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,10 +21,11 @@ import { PostsComponent } from './posts/posts.component';
   ],
   imports : [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    NgxsModule.forRoot( [ PostsState ] )
   ],
   providers : [],
   bootstrap : [ AppComponent ]
